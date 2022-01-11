@@ -1,297 +1,260 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    <title>MorpheusAF</title>
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #dialogText {
-            color: white;
-            background-color: #333333;
-        }
-
-        #dialogWrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: table;
-            background-color: #EEEEEE;
-        }
-
-        #dialogWrapCell {
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        #mainDialog {
-            max-width: 400px;
-            margin: 5px;
-            border: solid #AAAAAA 1px;
-            border-radius: 10px;
-            box-shadow: 3px 3px 5px 3px #AAAAAA;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
-            overflow: hidden;
-            text-align: left;
-        }
-        #mainDialog > * {
-            padding: 10px 30px;
-        }
-        #passArea {
-            padding: 20px 30px;
-            background-color: white;
-        }
-        #passArea > * {
-            margin: 5px auto;
-        }
-        #pass {
-            width: 100%;
-            height: 40px;
-            font-size: 30px;
-        }
-
-        #messageWrapper {
-            float: left;
-            vertical-align: middle;
-            line-height: 30px;
-        }
-
-        .notifyText {
-            display: none;
-        }
-
-        #invalidPass {
-            color: red;
-        }
-
-        #success {
-            color: green;
-        }
-
-        #submitPass {
-            font-size: 20px;
-            border-radius: 5px;
-            background-color: #E7E7E7;
-            border: solid gray 1px;
-            float: right;
-            cursor: pointer;
-        }
-        #contentFrame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        #attribution {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 0.8em;
-        }
-        #attribution, #attribution a {
-            color: #999;
-        }
-        .error {
-            display: none;
-            color: red;
-        }
-    </style>
-  </head>
-  <body>
-    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
-    <div id="dialogWrap">
-        <div id="dialogWrapCell">
-            <div id="mainDialog">
-
-                <div id="passArea">
-                    <p id="passwordPrompt">Password</p>
-                    <input id="pass" type="password" name="pass" autofocus>
-                    <div>
-                        <span id="messageWrapper">
-                            <span id="invalidPass" class="error">Sorry, please try again.</span>
-                            <span id="trycatcherror" class="error">Sorry, something went wrong.</span>
-                            <span id="success" class="notifyText">Success!</span>
-                            &nbsp;
-                        </span>
-                        <button id="submitPass" type="button">Submit</button>
-                        <div style="clear: both;"></div>
-                    </div>
-                </div>
-                <div id="securecontext" class="error">
-                    <p>
-                        Sorry, but password protection only works over a secure connection. Please load this page via HTTPS.
-                    </p>
-                </div>
-                <div id="nocrypto" class="error">
-                    <p>
-                        Your web browser appears to be outdated. Please visit this page using a modern browser.
-                    </p>
-                </div>
+<!DOCTYPE html>
+<html  >
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="generator" content="MorpheusAF, morpheus.github.io">
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+      <link rel="shortcut icon" href="assets/morpheus-logo.png" type="image/x-icon">
+      <meta name="description" content="New FinanceM4 HTML Template - Download Now!">
+      <title>MorpheusAF</title>
+      <link rel="stylesheet" href="extensions/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="extensions/bootstrap/css/bootstrap-grid.min.css">
+      <link rel="stylesheet" href="extensions/bootstrap/css/bootstrap-reboot.min.css">
+      <link rel="stylesheet" href="extensions/socicon/css/styles.css">
+      <link rel="stylesheet" href="extensions/dropdown/css/style.css">
+      <link rel="stylesheet" href="extensions/theme/css/style.css">
+      <link rel="preload" as="style" href="extensions/mbr/css/mbr-additional.css">
+      <link rel="stylesheet" href="extensions/mbr/css/mbr-additional.css" type="text/css">
+      <style>
+         body{
+         background-color: #fafafa;
+         }
+      </style>
+   </head>
+   <body>
+      <section class="menu cid-rOL7EBBKMl" once="menu" id="menu1-31">
+         <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+               <div class="navbar-brand">
+                  <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7" href="index.html">MorpheusAF</a></span>
+               </div>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <div class="hamburger">
+                     <!--<span></span>
+                     <span></span>
+                     <span></span>
+                     <span></span>-->
+                  </div>
+               </button>
             </div>
-        </div>
-    </div>
-
-    <script>
-    (function() {
-
-        var pl = "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";
-
-        var submitPass = document.getElementById('submitPass');
-        var passEl = document.getElementById('pass');
-        var invalidPassEl = document.getElementById('invalidPass');
-        var trycatcherror = document.getElementById('trycatcherror');
-        var successEl = document.getElementById('success');
-        var contentFrame = document.getElementById('contentFrame');
-
-        // Sanity checks
-
-        if (pl === "") {
-            submitPass.disabled = true;
-            passEl.disabled = true;
-            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
-            return;
-        }
-
-        if (!isSecureContext) {
-            document.querySelector("#passArea").style.display = "none";
-            document.querySelector("#securecontext").style.display = "block";
-            return;
-        }
-
-        if (!crypto.subtle) {
-            document.querySelector("#passArea").style.display = "none";
-            document.querySelector("#nocrypto").style.display = "block";
-            return;
-        }
-
-        function str2ab(str) {
-            var ustr = atob(str);
-            var buf = new ArrayBuffer(ustr.length);
-            var bufView = new Uint8Array(buf);
-            for (var i=0, strLen=ustr.length; i < strLen; i++) {
-                bufView[i] = ustr.charCodeAt(i);
-            }
-            return bufView;
-        }
-
-        async function deriveKey(salt, password) {
-            const encoder = new TextEncoder()
-            const baseKey = await crypto.subtle.importKey(
-                'raw',
-                encoder.encode(password),
-                'PBKDF2',
-                false,
-                ['deriveKey'],
-            )
-            return await crypto.subtle.deriveKey(
-                { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
-                baseKey,
-                { name: 'AES-GCM', length: 256 },
-                true,
-                ['decrypt'],
-            )
-        }
-
-        async function doSubmit(evt) {
-            submitPass.disabled = true;
-            passEl.disabled = true;
-
-            let iv, ciphertext, key;
-
-            try {
-                var unencodedPl = str2ab(pl);
-
-                const salt = unencodedPl.slice(0, 32)
-                iv = unencodedPl.slice(32, 32 + 16)
-                ciphertext = unencodedPl.slice(32 + 16)
-
-                key = await deriveKey(salt, passEl.value);
-            } catch (e) {
-                trycatcherror.style.display = "inline";
-                console.error(e);
-                return;
-            }
-
-            try {
-                const decryptedArray = new Uint8Array(
-                    await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext)
-                );
-
-                let decrypted = new TextDecoder().decode(decryptedArray);
-
-                if (decrypted === "") throw "No data returned";
-
-                const basestr = '<base href="." target="_top">';
-                const anchorfixstr = `
-                    <script>
-                        Array.from(document.links).forEach((anchor) => {
-                            const href = anchor.getAttribute("href");
-                            if (href.startsWith("#")) {
-                                anchor.addEventListener("click", function(e) {
-                                    e.preventDefault();
-                                    const targetId = this.getAttribute("href").substring(1);
-                                    const targetEl = document.getElementById(targetId);
-                                    targetEl.scrollIntoView();
-                                });
-                            }
-                        });
-                    <\/script>
-                `;
-
-                // Set default iframe link targets to _top so all links break out of the iframe
-                if (decrypted.includes("<head>")) decrypted = decrypted.replace("<head>", "<head>" + basestr);
-                else if (decrypted.includes("<!DOCTYPE html>")) decrypted = decrypted.replace("<!DOCTYPE html>", "<!DOCTYPE html>" + basestr);
-                else decrypted = basestr + decrypted;
-
-                // Fix fragment links
-                if (decrypted.includes("</body>")) decrypted = decrypted.replace("</body>", anchorfixstr + '</body>');
-                else if (decrypted.includes("</html>")) decrypted = decrypted.replace("</html>", anchorfixstr + '</html>');
-                else decrypted = decrypted + anchorfixstr;
-
-                contentFrame.srcdoc = decrypted;
-
-                successEl.style.display = "inline";
-                setTimeout(function() {
-                    dialogWrap.style.display = "none";
-                }, 1000);
-            } catch (e) {
-                invalidPassEl.style.display = "inline";
-                passEl.value = "";
-                submitPass.disabled = false;
-                passEl.disabled = false;
-                console.error(e);
-                return;
-            }
-        }
-
-        submitPass.onclick = doSubmit;
-        passEl.onkeypress = function(e){
-            if (!e) e = window.event;
-            var keyCode = e.keyCode || e.which;
-            invalidPassEl.style.display = "none";
-            if (keyCode == '13'){
-              // Enter pressed
-              doSubmit();
-              return false;
-            }
-        }
-    })();
-    </script>
-  </body>
+         </nav>
+      </section>
+      <section class="cid-rOLp9SF7oO" id="header01-35">
+         <div class="container align-center">
+            <div class="row justify-content-center">
+               <div class="mbr-black col-md-12 col-lg-9">
+                  <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">&nbsp;Morpheus<span style="color:rgb(8,116,252)">AF</span></h1>
+                  <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7">
+                     Morpheus is the strategically positioned team helping the Air Force Innovation ecosystem to unleash its power from within.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="image1 cid-rOLpaZYgO9" id="image01-36">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-lg-12 col-12">
+                  <div >
+                     <img src="assets/team.jpeg" alt="Morpheus" style="width:100%;">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="features14 cid-rOLjx4KAYk" id="features014-1v">
+				<h4 class="main-title align-center pb-3 mbr-semibold mbr-black mbr-fonts-style display-2"  style="color:black"><strong>&nbsp;How <u>You</u> Can Accelerate Change</strong></h4>
+         <div class="container">
+            <div class="row mbr-white justify-content-center">
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Become an Advocate</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="assets/AFWERX-Ecosystem-Playbook.pdf">AFWERX Innovation Handbook</a></li>
+                           <li><a href="https://www.af.mil/Portals/1/documents/2020SAF/CSAF_Action_Orders__Letter_to_the_Force_Dec_20.pdf">Accelerate Change or Lose</a></li>
+                           <li><a href="assets/csaf-letter.png">CSAF Accelerate Change or Lose Memo</a></li>
+                        </ul>
+                        </p>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Connect to the Network</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="https://afwerx.com/spark_/">Spark Cells</a></li>
+                           <li><a href="https://software.af.mil/software-factories/">Software Factories</a></li>
+                           <li><a href="https://aida.mitre.org/dod-innovation-ecosystem/">DoD Innovation Ecosystem Map</a></li>
+                           <li><a href="https://kumu.io/aflazo/def-innovation-ecosystem-map#def-ecosystem-map">Defense Entrepreneurs Forum Innovation Ecosystem Map</a></li>
+                        </ul>
+                        </p>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Cultivate your Local Innovation Ecosystem</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="assets/AFWERX-Ecosystem-Playbook.pdf">Start Here: Innovation Ecosystem Playbook</a></li>
+                           <li><a href="assets/Spark - Why and How to Start a Cell.pdf">Why and How to start a Spark Cell</a></li>
+                        </ul>
+                        </p>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>How to Acquire Funding</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="assets/AFWERX-Ecosystem-Playbook.pdf">Rally Your Key Players (Pg. 57)</a></li>
+                           <li><a href="https://afwerx.com/sbir-for-airmen/">Small Business Innovation Research Funds</a></li>
+                           <li><a href="assets/SIF-Handbook-0.9">Squadron Innovation Funds</a></li>
+                           <li><a href="http://82cons.com/services-table/">Rapid X (Acquisitions)</a></li>
+                           <li><a href="assets/Innovation Handbook-1.0.pdf">Other Sources</a></li>
+                        </ul>
+                        </p>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Organizations</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="https://www.nsin.mil/">National Security Innovation Network (NSIN)</a></li>
+                           <li><a href="https://www.def.org/">Defense Entrepreneurs Forum (DEF)</a></li>
+                           <li><a href="https://agitare.def.org/">Agitare</a></li>
+                           <li><a href="https://arcwerx.dso.mil/">ARCWERX</a></li>
+                        </ul>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="card-box">
+                        <h4 class="card-title mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>More Resources</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                        <ul style="color:black">
+                           <li><a href="https://web.archive.org/web/20190701215531/https://www.afwerx.af.mil/resources.html">AFWERX Resources</a></li>
+                           <li><a href="https://podcasts.apple.com/us/podcast/the-disruptiveaf-podcast/id1517079235">DisruptiveAF Podcast</a></li>
+                           <li><a href="https://airforcehub.com/">Air Force Hub</a></li>
+                        </ul>
+                        </p>
+                        <div class="link-wrap">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="features6 cid-rOMc65PcX5" id="features06-4b">
+         <div class="container">
+            <div class="row">
+               <div class="col-12 col-md-12">
+                  <h4 class="main-title align-center pb-3 mbr-semibold mbr-black mbr-fonts-style display-2"><strong>&nbsp;Awesome Airmen & Guardian Creations</strong></h4>
+               </div>
+               <div class="card p-4 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="img-wrapper">
+                        <img src="assets/af-hub.jpg" alt="Air Force Hub">
+                     </div>
+                     <div class="card-box align-left">
+                        <h4 class="card-title align-left mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Air Force Hub</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                           A repository of free tools for the Air Force, made by Airmen for Airmen.
+                        </p>
+                        <div class="link-wrap">
+                           <h5 class="link align-left mbr-semibold mbr-black mbr-fonts-style display-4"><a href="https://airforcehub.com/" target="_blank">Read more</a></h5>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-4 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="img-wrapper">
+                        <img src="assets/airmen-coders.png" alt="Airmen Coders">
+                     </div>
+                     <div class="card-box align-left">
+                        <h4 class="card-title align-left mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Airmen Coders</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                           A group of U.S. Air Force Airmen who use code to improve the lives of our fellow Airmen.
+                        </p>
+                        <div class="link-wrap">
+                           <h5 class="link align-left mbr-semibold mbr-black mbr-fonts-style display-4"><a href="https://airmencoders.us/projects/"  target="_blank">Read more</a></h5>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card p-4 col-12 col-md-6 col-lg-4">
+                  <div class="card-wrapper">
+                     <div class="img-wrapper">
+                        <img src="assets/supra-coders.png" alt="Supra Coders">
+                     </div>
+                     <div class="card-box align-left">
+                        <h4 class="card-title align-left mbr-semibold mbr-black mbr-fonts-style display-7">
+                           <strong>Supra Coders</strong>
+                        </h4>
+                        <p class="mbr-text pb-2  mbr-fonts-style display-4">
+                           A group of U.S. Space Force Guardians who use code to improve the lives of our fellow Guardians.
+                        </p>
+                        <div class="link-wrap">
+                           <h5 class="link align-left mbr-semibold mbr-black mbr-fonts-style display-4"><a href="http://supracoders.us/projects/" target="_blank">Read more</a></h5>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="cid-rOL76yrmAp" id="footer02-30">
+         <div class="container">
+            <div class="row mbr-white">
+               <div class="col-12 copyright align-left col-lg-6 col-md-4">
+                  <p class="mbr-text mb-0 mbr-fonts-style align-left display-4">MorpheusAF</p>
+               </div>
+               <div class="col-12 col-lg-6 col-md-8">
+                  <p class="mbr-text align-right mbr-fonts-style align-right display-4">Connect with us | <a href="mailto:team@morpheusaf.com" target="_blank">Team@MorpheusAF.com</a>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </section>
+   </body>
 </html>
