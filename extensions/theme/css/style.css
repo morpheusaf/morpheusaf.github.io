@@ -27,6 +27,10 @@ a {
 figure {
   margin-bottom: 0; }
 
+.underline:hover{
+  text-decoration: underline;
+}
+
 body {
   color: #232323; }
 
